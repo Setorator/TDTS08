@@ -1,0 +1,81 @@
+#################################################################
+# Lab 1 by Kim Larsson (kimla207) and Niklas Nilsson (nikni459) #
+#################################################################
+
+The differences of the two cache config files are that cache1 has
+a line size (in bytes) of 16 and associativity of 1 while cache2
+has a line size of 8 and associativity of 2. The associativity 
+configuration means that cache1 is 1-set-associative, meaning that 
+each set (line) in the cache can only store one specific block. 
+This is also known as direct mapping. With the same reasoning
+cache2 is 2-set-assosiative, meaning that each set (line) in the 
+cache can store up to 2 blocks at the same time. This means that 
+both configurations have the same total size: 
+1024*16*1 vs 1024*8*2. 
+
+--------------------------------------------------------------------
+
+Both of the test programs exhibit temporal locality in their loops,
+i.e. their loop-variables (i and j). Also, they exhibit temporal
+locality when using the defined variables "TAB_SIZE", "CACHE_SIZE" 
+and "sum" variables.
+
+Regarding the spatial locality both of the programs exhibit it when 
+they are using some sort of array-type. Specifically the A[]
+variable and the line to be printed in the end of the programs.
+
+--------------------------------------------------------------------
+
+## Analyze for the different configurations ##
+
+General:
+Both test cases do the same thing but in different ways. Test1 loops
+through the list two times in order to fill it with values. The 
+first time it loops through A[0 -> TAB_SIZE] and the second time 
+through A[CACHE_SIZE -> (TAB_SIZE - CACHE_SIZE)].
+Test2 loops through the list one time but makes two operations that 
+corresponds to the same operations in both loops for test1. 
+
+
+Cache1:
+Test1 works very well with this configuration since it supports 
+longer sequences of data due to the length of the blocks (lines) in
+the cache, meaning that there occur fewer misses. Test2, however, 
+doesn't perform very well with this configuration. This is due to 
+the fact that test2  continuesly tries to access two addresses that 
+are mapped to the same line in the cache: A[i] and A[i+CACHE_SIZE]. 
+This results in a miss every time since the two accesses erases 
+eachothers upcoming values from the cache.
+
+Cache2:
+With this configuration we get that test2 works better than test1.
+As mentioned above, for the cache1 + test2 case, the accessing of 
+the two addresses results in a miss every time due to the erasing 
+of each others upcoming values. With this configuration, however,
+this wont happen due to the fact that the cache can store the two 
+blocks in the same set simultaneously. With test1, however, this
+configuration is worse than with cache1 since the cache lines now
+only stores a block with the size of 8 bytes instead of 16. In 
+other words the miss-frequency will double due to the halving of 
+the block size. 
+
+Consecutive hits:
+
+Cache1 + Test1 = 16 hits between 2 misses.
+Cache1 + Test2 = 0 hits between 2 misses. 
+Cache2 + Test1 = 8 hits between 2 misses.
+Cache2 + Test2 = 16 hits between 2 misses.
+
+Is this really reasonable due to the results below??
+
+
+--------------------------------------------------------------------
+
+Results:
+
+cache1 + test1: miss rate = 0.0091
+cache1 + test2: miss rate = 0.1577
+cache2 + test1: miss rate = 0.0177
+cache2 + test2: miss rate = 0.0235
+
+--------------------------------------------------------------------

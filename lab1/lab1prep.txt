@@ -1,0 +1,66 @@
+
+-----------------------------------------------------
+---- Problem 1 --------------------------------------
+-----------------------------------------------------
+
+Consider a machine with a byte addressable main memory of 2^8 bytes and
+block size of 4 bytes. Assume that a direct mapped cache consisting of
+8 lines is used with this machine.
+
+1) How is an 8-bit memory address divided into tag, line number, and byte
+number?
+
+- byte number = slot in the block. Since the block size is 4 bytes we need
+2 bits to represent each position. Therefore byte number = 2 bits.
+
+- line number = slot in the cache memory. Since the cache memory constist of
+8 lines we need 3 bits to represent each position. line number = 3 bits.
+
+- tag is then the remaining 3 bits in the byte.
+
+2) Into what line would bytes with each of the following addresses be stored?
+0001 1011
+0011 0100
+1101 0000
+1010 1010
+
+- By looking at the slot-bits (bit 2-4 from the right) we see that the bytes
+would be stored into line 6, 5, 4 and 2 respectively.
+
+3) Suppose the byte with address 1010 0001 is stored in the cache. What are
+the addresses of the other bytes stored along with it?
+
+- Those with same tag and line number but different byte number, i.e. 
+1010 0000, 1010 0010 and 1010 0011 under the assumption that the cache
+is also grouped with 4 bytes per line.
+
+4) How many total bytes of memory can be stored in the cache?
+
+- 4 bytes * 8 lines = 32 bytes. 
+
+5) Why is the tag also stored in the cache?
+
+- It is used to check if the data located in the cache is actually the data we
+are looking for. Ex. bytes 1110 0000 and 0000 0000 is both mapped to cahce line
+0. Say that the we search  for the later and we during the check find the
+former, this would result in a 'mis' due to the wrong tag.
+
+
+-----------------------------------------------------
+---- Problem 2 --------------------------------------
+-----------------------------------------------------
+
+Consider the following code:
+cout << "Hello World";
+cin >> a;
+for(i = 0; i < 50; i++)
+cout<<i;
+
+1) Give one example of the spatial locality in the code.
+
+- Spatial = The "Hello World!" string which is stored as single characters
+after one another.
+
+2) Give one example of the temporal locality in the code.
+
+- Temporal = the variable "i" that is a continuesly accessed memory address.
