@@ -2,6 +2,12 @@
 # Lab 1 by Kim Larsson (kimla207) and Niklas Nilsson (nikni459) #
 #################################################################
 
+
+
+#################################################################
+Part 2
+#################################################################
+
 The differences of the two cache config files are that cache1 has
 a line size (in bytes) of 16 and associativity of 1 while cache2
 has a line size of 8 and associativity of 2. The associativity 
@@ -61,17 +67,17 @@ the block size.
 
 Consecutive hits:
 
-Cache1 + Test1 = 16 hits between 2 misses.
+Cache1 + Test1 = 79 hits between 2 misses.
 Cache1 + Test2 = 0 hits between 2 misses. 
-Cache2 + Test1 = 8 hits between 2 misses.
-Cache2 + Test2 = 16 hits between 2 misses.
+Cache2 + Test1 = 39 hits between 2 misses.
+Cache2 + Test2 = 78 hits between 2 misses.
 
 Is this really reasonable due to the results below??
 
 
 --------------------------------------------------------------------
 
-Results:
+Results with sim-cache:
 
 cache1 + test1: miss rate = 0.0091
 cache1 + test2: miss rate = 0.1577
@@ -79,3 +85,25 @@ cache2 + test1: miss rate = 0.0177
 cache2 + test2: miss rate = 0.0235
 
 --------------------------------------------------------------------
+
+
+
+#################################################################
+Part 3
+#################################################################
+
+
+
+What is the relation between the miss ratio and: the associativity and number of sets?
+
+- Associativity have greater impact on small size caches. A greater associativity gives a lower miss rate for all sample sizes up to a point depending on cache size.
+
+Assume that "go.ss" has almost the same number of instruction and data accesses. Further assume that we are poor enough to afford only one cache. Based on your plot graphs, explain which variant of cache (instruction, data or unified) you will choose to run this application.
+
+- Only instruction.
+
+Consider your plot graph for the instruction cache. Assume that a designer can spend at most 8000 SEK for an instruction cache and the cost to design each byte in an instruction cache is 0.01 SEK. For instance, with this budget and cost, we can have an instruction cache with the maximum cache size of 800000 bytes. Now, for the given maximum budget and the given cost-per-byte, find the exact cache configuration that minimizes the following cost function:
+
+cost function = (100000 * miss ratio) + (0.01 * cache size in bytes)
+
+512 asoc 8 = 186.02
