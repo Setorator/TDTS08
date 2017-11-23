@@ -1,0 +1,72 @@
+
+
+GPR(N) General purpose register N
+SET_GPR(N,V) Set general purpose register N to value V
+
+LB: Load byte signed, displaced addressing.
+Opcode: 0x20
+Format: LB rt,offset(rs) inc_dec
+Semantics: SET_GPR(RT, READ_SIGNED_BYTE(GPR(RS) + OFFSET))
+
+
+-- Task 1 - Pipeline basics I
+
+LB instruction 
+IF: Fetch the LB instruction from memory
+DA: Determine the op-code and the specified operands. In this case the op-code is 0x20, meaning we are using displaced addressing.
+CO: Calculate the effective address, meaning the address in memory where the operand is stored.
+FO: Fetch the operand from memory
+EX: Not used since this is a "basic" instruction that does not execute any other instruction.
+WB: Write byte to a general purpose register (GPR)
+
+ADD instruction
+IF: Fetch the ADD instruction from memory.
+DA: Determine the op-code and the specified operands. In this case the op-code is 0x40, meaning we use addition with overflow check.
+CO: Calculate the effective address, meaning the address in memory where the operand is stored. 
+FO: Fetch the operand from memory 
+EX: Add values and check for overflow.
+WB: Store the sum in specified general purpose register (GPR).
+
+
+
+
+-- Task 3 - Pipeline basics II
+
+metrics used: total time in cycles and branch address-prediction rate (i.e. addr_hits/updates)
+
+We could use total time in seconds, but it only measures in whole seconds. Therefore it is better to use total time in amount of clock cycles.
+
+
+
+Taken:
+sim_elapsed_time                 52 # total simulation time in seconds
+sim_cycle                  82335864 # total simulation time in cycles
+sim_inst_rate          1062649.8077 # simulation speed (in insts/sec)
+bpred_taken.bpred_addr_rate    0.3164 # branch address-prediction rate (i.e., addr-hits/updates)
+
+Bimodel:
+sim_elapsed_time                 36 # total simulation time in seconds
+sim_cycle                  55565715 # total simulation time in cycles
+sim_inst_rate          1534938.6111 # simulation speed (in insts/sec)
+bpred_bimod.bpred_addr_rate    0.8247 # branch address-prediction rate (i.e., addr-hits/updates)
+
+2level (local):
+sim_elapsed_time                 38 # total simulation time in seconds
+sim_cycle                  59930331 # total simulation time in cycles
+sim_inst_rate          1454152.3684 # simulation speed (in insts/sec)
+bpred_2lev.bpred_addr_rate    0.7294 # branch address-prediction rate (i.e., addr-hits/updates)
+
+Combined:
+sim_elapsed_time                 36 # total simulation time in seconds
+sim_cycle                  55310616 # total simulation time in cycles
+sim_inst_rate          1534938.6111 # simulation speed (in insts/sec)
+bpred_comb.bpred_addr_rate    0.8257 # branch address-prediction rate (i.e., addr-hits/updates)
+
+Perfect:
+sim_elapsed_time                 29 # total simulation time in seconds
+sim_cycle                  46345442 # total simulation time in cycles
+sim_inst_rate          1905441.0345 # simulation speed (in insts/sec)
+branch address-prediction = 1 since it is perfect!!!!!!!!!!
+
+
+
