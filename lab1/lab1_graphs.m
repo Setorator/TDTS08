@@ -5,21 +5,27 @@ inst = dlmread('lab1/output_inst.txt', '	').';
 unified = dlmread('lab1/output_unified.txt', '	').';
 
 
-% figure
-% plot(data)
-% title('Only data')
-% xlabel('Associativity')
-% ylabel('Miss Ratio')
-% figure
-% plot(inst)
-% title('Only instructions')
-% xlabel('Associativity')
-% ylabel('Miss Ratio')
-% figure
-% plot(unified)
-% title('Instructions and data')
-% xlabel('Associativity')
-% ylabel('Miss Ratio')
+figure
+d = plot(data);
+set(d,{'DisplayName'},{'128';'256';'512';'1024';'2048';'4096'});
+legend show
+title('Only data')
+xlabel('Associativity')
+ylabel('Miss Ratio')
+figure
+i = plot(inst);
+set(i,{'DisplayName'},{'128';'256';'512';'1024';'2048';'4096'});
+legend show
+title('Only instructions')
+xlabel('Associativity')
+ylabel('Miss Ratio')
+figure
+u = plot(unified);
+set(u,{'DisplayName'},{'128';'256';'512';'1024';'2048';'4096'});
+legend show
+title('Instructions and data')
+xlabel('Associativity')
+ylabel('Miss Ratio')
 
 
 line_size = 32;

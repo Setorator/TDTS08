@@ -1,0 +1,43 @@
+#!/bin/bash
+touch decode_result.txt
+touch issue_result.txt
+touch commit_result.txt
+touch ruu_result.txt
+touch ialu_result.txt
+touch imult_result.txt
+touch fpalu_result.txt
+touch fpmult_result.txt
+
+
+for ((i=1; i<=32; i=i*2)); do
+    awk '/sim_cycle/{print $2}' "decode_${i}.txt" >> decode_result.txt
+done
+
+for ((i=1; i<=32; i=i*2)); do
+    awk '/sim_cycle/{print $2}' "issue_${i}.txt" >> issue_result.txt
+done
+
+for ((i=1; i<=32; i=i*2)); do
+    awk '/sim_cycle/{print $2}' "commit_${i}.txt" >> commit_result.txt
+done
+
+for ((i=2; i<=512; i=i*2)); do
+    awk '/sim_cycle/{print $2}' "ruu_${i}.txt" >> ruu_result.txt
+done
+
+for ((i=1; i<=8; i=i*2)); do
+    awk '/sim_cycle/{print $2}' "ialu_${i}.txt" >> ialu_result.txt
+done
+
+
+for ((i=1; i<=8; i=i*2)); do
+    awk '/sim_cycle/{print $2}' "imult_${i}.txt" >> imult_result.txt
+done
+
+for ((i=1; i<=8; i=i*2)); do
+    awk '/sim_cycle/{print $2}' "fpalu_${i}.txt" >> fpalu_result.txt
+done
+
+for ((i=1; i<=8; i=i*2)); do
+    awk '/sim_cycle/{print $2}' "fpmult_${i}.txt" >> fpmult_result.txt
+done
