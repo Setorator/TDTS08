@@ -1,0 +1,56 @@
+
+Write a script that runs simulations by changing one variable at a time, testing them individually to see which value for which parameters results in the lowest possible simulation cycles, then combining the best result of each parameter to hopefully get the best combination. The values for the other parameters that are not tested are set to their default values.
+------
+
+imult/fpalu/fpmult barely impacts performance since no(or a few) floting point operations are used in GO we assume,
+
+
+-------
+
+1 million cycles + 2%
+
+cost = (decode + issue + commit + ialu + imult + fpalu + fpmult) x 10 + ruu_size
+
+decade: 4
+issue: 4
+commit: 4
+ialu: 4
+imult: 1
+fpalu: 1
+fpmult: 1
+ruu: 32
+
+cost = (4 + 8 + 4 + 4 + 1 + 1 + 1) x 10 + 32 = 262, cycles = 1005811: +0.58%
+cost = (4 + 4 + 4 + 4 + 1 + 1 + 1) x 10 + 64 = 254, cycles = 1017180: +1.72%
+------
+
+-decode:width <insts>
+set the decode width to be <insts>, which
+must be a power of two. The default is 4.
+
+-issue:width <insts>
+set the maximum issue width in a given
+cycle. Must be a power of two. The default is 4.
+
+-commit:width <int>
+4 # instruction commit B/W (insts/cycle)
+
+
+-ruu:size <insts>
+capacity of the RUU (in instructions). The
+default is 16.
+
+-res:ialu <num>
+specify number of integer ALUs. The default
+is 4.
+-res:imult <num>
+specify number of integer multipliers/dividers.
+The default is 1.
+
+-res:fpalu <num>
+specify number of floating point ALUs. The
+default is 4.
+
+-res: fpmult <num>
+specify number of floating point multipliers/
+dividers. The default is 1.
