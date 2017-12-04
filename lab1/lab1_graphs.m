@@ -38,11 +38,11 @@ cache_sizes = line_size * (associativity.' * no_sets);
 cost = (100000 * inst) + (0.01 * cache_sizes);
 
 budget = 8000;
-best = 0;
+best = 8000;
 
 for row=1:size(cost,1)
     for col=1:size(cost,2)
-          if ((cost(row,col) <= budget) && (cost(row,col) > best))
+          if (cost(row,col) <= best)
               best = cost(row, col);
           end
     end

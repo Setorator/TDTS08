@@ -1,0 +1,29 @@
+#################################################################
+# Lab 1 by Kim Larsson (kimla207) and Niklas Nilsson (nikni459) #
+#################################################################
+
+-- Comp
+
+3.1
+- TAB_SIZE and CACHE_SIZE are not variables but #defined words, meaning that 
+the words are replaced buy its values so thus they are never stored as 
+variables and does not exhibit temporal locality.
+
+- Array references are spatial locality when array elements are accessed in 
+succession. 
+
+3.2
+- We forgot to consider the nested "j-loop" when counting the incrementations.
+c1t1: = 79
+c2t1: = 39
+c2t2: = 78 
+
+4
+- The obvious choice is the unified configuration. If "data-only" or "instruction-only" is used we will have 
+to access the memory instead of the cache when accessing the one that is not stored in the cache. But if we
+have the "unified" configuration we will only have to access memory when misses occur. The misses will occur
+more frequent than the "*-only" configurations but we will still benefit from it.
+
+- We misread the question and thought that we wanted to get as close to the budget roof as possible. The 
+Correct answer is 466 kr that we get when using 128 sets and an associativity of 2.
+
