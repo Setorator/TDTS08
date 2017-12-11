@@ -23,10 +23,12 @@ It contains the following instructions:
   400240:       4c 00 00 00     mflo $2
   400244:       00 02 00 00 
   400248:       43 00 00 00     addiu $6,$6,1
+  6
   40024c:       01 00 06 06 
   400250:       57 00 00 00     srl $2,$3,0x0
   400254:       00 02 03 00 
   400258:       42 00 00 00     addu $3,$0,$0
+  3
   40025c:       00 03 00 00 
   400260:       59 00 00 00     sra $2,$2,0x6
   400264:       06 02 02 00 
@@ -43,22 +45,73 @@ It contains the following instructions:
   400290:       42 00 00 00     addu $4,$4,$2
   400294:       00 04 02 04 
   400298:       55 00 00 00     sll $4,$4,0x3
+  4
   40029c:       03 04 04 00 
   4002a0:       45 00 00 00     subu $5,$5,$4
+  5
   4002a4:       00 05 04 05 
   4002a8:       34 00 00 00     sw $5,0($7)
   4002ac:       00 00 05 07 
   4002b0:       43 00 00 00     addiu $7,$7,4
+  7
   4002b4:       04 00 07 07 
   4002b8:       5c 00 00 00     slti $2,$6,1000
+  2
   4002bc:       e8 03 02 06 
   4002c0:       06 00 00 00     bne $2,$0,400228 <main+0x38>
   4002c4:       d8 ff 00 02 
   4002c8:       42 00 00 00     addu $6,$0,$0
+  6
   
   
-  Now we need to identify all the Read-After-Write dependencies, as we assume that the preprocessing can eliminate the 
-  WAR and WAW dependencies.
+Now we need to identify all the Read-After-Write dependencies, as we assume that the preprocessing can eliminate the 
+WAR and WAW dependencies. These are:
+
+400228:       43 00 00 00     addiu $5,$6,2   -- Places result in $5   
+400230:       46 00 00 00     mult $5,$8      -- Reads and writes to $5
+
+400238:       4a 00 00 00     mfhi $3         -- Writes to $3
+400250:       57 00 00 00     srl $2,$3,0x0   -- Reads from $3
+
+400250:       57 00 00 00     srl $2,$3,0x0   -- Writes to $2
+400260:       59 00 00 00     sra $2,$2,0x6   -- Reads from $2
+
+400230:       46 00 00 00     mult $5,$8      -- Writes to $5
+400268:       59 00 00 00     sra $4,$5,0x1f  -- Reads from $5
+
+400260:       59 00 00 00     sra $2,$2,0x6   -- Writes to $2
+400268:       59 00 00 00     sra $4,$5,0x1f  -- Writes to $4
+400270:       45 00 00 00     subu $2,$2,$4   -- Reads from $2 and $4
+
+400270:       45 00 00 00     subu $2,$2,$4   -- Writes to $2
+400278:       55 00 00 00     sll $4,$2,0x5   -- Reads from $2
+
+400270:       45 00 00 00     subu $2,$2,$4   -- Writes to $2
+400278:       55 00 00 00     sll $4,$2,0x5   -- Writes to $4
+400280:       45 00 00 00     subu $4,$4,$2   - Reads from $2 and $4
+
+400280:       45 00 00 00     subu $4,$4,$2   -- Writes to $4
+400288:       55 00 00 00     sll $4,$4,0x2   -- Reads from $4
+
+400270:       45 00 00 00     subu $2,$2,$4   -- Writes to $2
+400288:       55 00 00 00     sll $4,$4,0x2   -- Writes to $4
+400290:       42 00 00 00     addu $4,$4,$2   -- Reads from $2 and $4
+
+400290:       42 00 00 00     addu $4,$4,$2   -- Writes to $4
+400298:       55 00 00 00     sll $4,$4,0x3   -- Reads from $4
+
+400230:       46 00 00 00     mult $5,$8      -- Writes to $5
+400298:       55 00 00 00     sll $4,$4,0x3   -- Writes to $4
+4002a0:       45 00 00 00     subu $5,$5,$4   -- Reads from $4 and $5
+
+4002a0:       45 00 00 00     subu $5,$5,$4   -- Writes to $5
+4002a8:       34 00 00 00     sw $5,0($7)     -- Reads from $5 (into $7 + offset 0)
+
+4002a8:       34 00 00 00     sw $5,0($7)     -- Writes to $7
+4002b0:       43 00 00 00     addiu $7,$7,4   -- Reads from $7
+
+400248:       43 00 00 00     addiu $6,$6,1   -- Writes to $6
+4002b8:       5c 00 00 00     slti $2,$6,1000 -- Reads from $6
 
 
 
