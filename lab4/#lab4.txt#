@@ -2,8 +2,65 @@ Here are the assignments you should work on:
 
 1. Select a benchmark program (e.g., go.ss). Let us denote your chosen program with p.
 
+- selected the program pc.ss just because it seemed to be simple enough.
+
 2. Select 1 basic block, denoted with bb, from p, such that bb contains at least 15 instructions. 
 A help on the delimitation of basic blocks can be found on here.
+
+Selected the following block: 
+Instruction nr: 6       
+start address: 0x00400228      
+end address: 0x004002c8      
+block size: 20
+
+It contains the following instructions:
+  400228:       43 00 00 00     addiu $5,$6,2
+  40022c:       02 00 05 06 
+  400230:       46 00 00 00     mult $5,$8
+  400234:       00 00 08 05 
+  400238:       4a 00 00 00     mfhi $3
+  40023c:       00 03 00 00 
+  400240:       4c 00 00 00     mflo $2
+  400244:       00 02 00 00 
+  400248:       43 00 00 00     addiu $6,$6,1
+  40024c:       01 00 06 06 
+  400250:       57 00 00 00     srl $2,$3,0x0
+  400254:       00 02 03 00 
+  400258:       42 00 00 00     addu $3,$0,$0
+  40025c:       00 03 00 00 
+  400260:       59 00 00 00     sra $2,$2,0x6
+  400264:       06 02 02 00 
+  400268:       59 00 00 00     sra $4,$5,0x1f
+  40026c:       1f 04 05 00 
+  400270:       45 00 00 00     subu $2,$2,$4
+  400274:       00 02 04 02 
+  400278:       55 00 00 00     sll $4,$2,0x5
+  40027c:       05 04 02 00 
+  400280:       45 00 00 00     subu $4,$4,$2
+  400284:       00 04 02 04 
+  400288:       55 00 00 00     sll $4,$4,0x2
+  40028c:       02 04 04 00 
+  400290:       42 00 00 00     addu $4,$4,$2
+  400294:       00 04 02 04 
+  400298:       55 00 00 00     sll $4,$4,0x3
+  40029c:       03 04 04 00 
+  4002a0:       45 00 00 00     subu $5,$5,$4
+  4002a4:       00 05 04 05 
+  4002a8:       34 00 00 00     sw $5,0($7)
+  4002ac:       00 00 05 07 
+  4002b0:       43 00 00 00     addiu $7,$7,4
+  4002b4:       04 00 07 07 
+  4002b8:       5c 00 00 00     slti $2,$6,1000
+  4002bc:       e8 03 02 06 
+  4002c0:       06 00 00 00     bne $2,$0,400228 <main+0x38>
+  4002c4:       d8 ff 00 02 
+  4002c8:       42 00 00 00     addu $6,$0,$0
+  
+  
+  Now we need to identify all the Read-After-Write dependencies, as we assume that the preprocessing can eliminate the 
+  WAR and WAW dependencies.
+
+
 
 3. Define the architecture of the VLIW processor V by choosing the following numbers of units.
 the number of ALUs, denoted with alu_no
