@@ -1,0 +1,16 @@
+Here are the assignments you should work on:
+
+1. Select a benchmark program (e.g., go.ss). Let us denote your chosen program with p.
+
+2. Select 1 basic block, denoted with bb, from p, such that bb contains at least 15 instructions. 
+A help on the delimitation of basic blocks can be found on here.
+
+3. Define the architecture of the VLIW processor V by choosing the following numbers of units.
+the number of ALUs, denoted with alu_no
+the number of MULs, denoted with mul_no
+the number of FPUs, denoted with fpu_no
+the number of BAUs, denoted with bau_no
+
+4. Pack the instructions of bb into VLIW instructions, such that the data dependencies and resource constraints are satisfied.
+
+5. Explore the trade-off between cost (the more units you add to the VLIW, the higher the cost) and performance (the more units you add, the higher the chance that the basic block will run faster).
