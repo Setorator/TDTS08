@@ -1,0 +1,15 @@
+ADD:
+
+No WO needed because we store during EI in specified register
+
+No FO because we load values from registers
+
+CO ???? 
+
+LB
+
+CO = Value in GPR + specified offset
+
+FO = fetch value from adress calculated in CO
+
+No WO needed because we store during EI in specified register
