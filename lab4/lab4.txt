@@ -14,53 +14,53 @@ end address: 0x004002c8
 block size: 20
 
 It contains the following instructions:
-  400228:       43 00 00 00     addiu $5,$6,2
+  400228:       43 00 00 00     addiu $5,$6,2	ALU
   40022c:       02 00 05 06 
-  400230:       46 00 00 00     mult $5,$8
+  400230:       46 00 00 00     mult $5,$8	MUL
   400234:       00 00 08 05 
-  400238:       4a 00 00 00     mfhi $3
+  400238:       4a 00 00 00     mfhi $3		none
   40023c:       00 03 00 00 
-  400240:       4c 00 00 00     mflo $2
+  400240:       4c 00 00 00     mflo $2		none
   400244:       00 02 00 00 
-  400248:       43 00 00 00     addiu $6,$6,1
+  400248:       43 00 00 00     addiu $6,$6,1	ALU
   6
   40024c:       01 00 06 06 
-  400250:       57 00 00 00     srl $2,$3,0x0
+  400250:       57 00 00 00     srl $2,$3,0x0	ALU
   400254:       00 02 03 00 
-  400258:       42 00 00 00     addu $3,$0,$0
+  400258:       42 00 00 00     addu $3,$0,$0	ALU
   3
   40025c:       00 03 00 00 
-  400260:       59 00 00 00     sra $2,$2,0x6
+  400260:       59 00 00 00     sra $2,$2,0x6	ALU
   400264:       06 02 02 00 
-  400268:       59 00 00 00     sra $4,$5,0x1f
+  400268:       59 00 00 00     sra $4,$5,0x1f	ALU
   40026c:       1f 04 05 00 
-  400270:       45 00 00 00     subu $2,$2,$4
+  400270:       45 00 00 00     subu $2,$2,$4	ALU
   400274:       00 02 04 02 
-  400278:       55 00 00 00     sll $4,$2,0x5
+  400278:       55 00 00 00     sll $4,$2,0x5	ALU
   40027c:       05 04 02 00 
-  400280:       45 00 00 00     subu $4,$4,$2
+  400280:       45 00 00 00     subu $4,$4,$2	ALU
   400284:       00 04 02 04 
-  400288:       55 00 00 00     sll $4,$4,0x2
+  400288:       55 00 00 00     sll $4,$4,0x2	ALU
   40028c:       02 04 04 00 
-  400290:       42 00 00 00     addu $4,$4,$2
+  400290:       42 00 00 00     addu $4,$4,$2	ALU
   400294:       00 04 02 04 
-  400298:       55 00 00 00     sll $4,$4,0x3
+  400298:       55 00 00 00     sll $4,$4,0x3	ALU
   4
   40029c:       03 04 04 00 
-  4002a0:       45 00 00 00     subu $5,$5,$4
+  4002a0:       45 00 00 00     subu $5,$5,$4	ALU
   5
   4002a4:       00 05 04 05 
-  4002a8:       34 00 00 00     sw $5,0($7)
+  4002a8:       34 00 00 00     sw $5,0($7)	BAU
   4002ac:       00 00 05 07 
-  4002b0:       43 00 00 00     addiu $7,$7,4
+  4002b0:       43 00 00 00     addiu $7,$7,4	ALU
   7
   4002b4:       04 00 07 07 
-  4002b8:       5c 00 00 00     slti $2,$6,1000
+  4002b8:       5c 00 00 00     slti $2,$6,1000	ALU
   2
   4002bc:       e8 03 02 06 
-  4002c0:       06 00 00 00     bne $2,$0,400228 <main+0x38>
+  4002c0:       06 00 00 00     bne $2,$0,400228 <main+0x38>	ALU
   4002c4:       d8 ff 00 02 
-  4002c8:       42 00 00 00     addu $6,$0,$0
+  4002c8:       42 00 00 00     addu $6,$0,$0	ALU
   6
   
   
@@ -124,3 +124,15 @@ the number of BAUs, denoted with bau_no
 4. Pack the instructions of bb into VLIW instructions, such that the data dependencies and resource constraints are satisfied.
 
 5. Explore the trade-off between cost (the more units you add to the VLIW, the higher the cost) and performance (the more units you add, the higher the chance that the basic block will run faster).
+
+
+2 1 1 1
+ALU cost:               2 x 2.000000 = 4.000000
+MUL cost:               1 x 16.000000 = 16.000000
+FPU cost:               1 x 32.000000 = 32.000000
+Bus access cost:        1 x 100.000000 = 100.000000
+Total hardware cost:    152.000000
+Performance:            15 cycles
+Cost-performance ratio: 2280.000000
+
+

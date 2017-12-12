@@ -1,0 +1,278 @@
+Selected the following block: 
+Instruction nr: 24       
+start address: 0x00400598     
+end address: 0x00400610   
+block size: 15
+
+
+0x00400598:       42 00 00 00     addu $21,$0,$2	ALU
+21
+0x0040059c:       00 15 02 00
+0x004005a0:       a2 00 00 00     lui $2,225		none
+0x004005a4:       e1 00 02 00
+0x004005a8:       51 00 00 00     ori $2,$2,7936	ALU
+0x004005ac:       00 1f 02 02
+0x004005b0:       42 00 00 00     addu $16,$5,$2	ALU
+16
+0x004005b4:       00 10 02 05
+0x004005b8:       a2 00 00 00     lui $2,32		none
+0x004005bc:       20 00 02 00
+0x004005c0:       51 00 00 00     ori $2,$2,8240	ALU
+0x004005c4:       30 20 02 02
+0x004005c8:       42 00 00 00     addu $20,$5,$2	ALU
+20
+0x004005cc:       00 14 02 05
+0x004005d0:       a2 00 00 00     lui $2,64		none
+0x004005d4:       40 00 02 00
+0x004005d8:       51 00 00 00     ori $2,$2,16440	ALU
+2
+0x004005dc:       38 40 02 02	
+0x004005e0:       42 00 00 00	  addu $5,$5,$2		ALU
+5
+0x004005e4:       00 05 02 05
+0x004005e8:       a2 00 00 00     lui $19,225		none
+0x004005ec:       e1 00 13 00
+0x004005f0:       51 00 00 00     ori $19,$19,8112	ALU
+0x004005f4:       b0 1f 13 13
+0x004005f8:       42 00 00 00     addu $19,$19,$29	ALU
+0x004005fc:       00 13 1d 13
+0x00400600:       34 00 00 00     sw $5,0($19)		BAU
+19+0=19
+0x00400604:       00 00 05 13
+0x00400608:       43 00 00 00     addiu $18,$0,513	ALU
+18
+0x0040060c:       01 02 12 00
+
+-- dependencies
+
+0x004005a0:       a2 00 00 00     lui $2,225		
+0x004005a8:       51 00 00 00     ori $2,$2,7936
+
+0x004005a8:       51 00 00 00     ori $2,$2,7936
+0x004005b0:       42 00 00 00     addu $16,$5,$2
+
+0x004005b8:       a2 00 00 00     lui $2,32
+0x004005c0:       51 00 00 00     ori $2,$2,8240
+
+0x004005c0:       51 00 00 00     ori $2,$2,8240
+0x004005c8:       42 00 00 00     addu $20,$5,$2
+
+0x004005d0:       a2 00 00 00     lui $2,64
+0x004005d8:       51 00 00 00     ori $2,$2,16440
+
+0x004005d8:       51 00 00 00     ori $2,$2,16440
+0x004005e0:       42 00 00 00     addu $5,$5,$2
+
+0x004005e8:       a2 00 00 00     lui $19,225
+0x004005f0:       51 00 00 00     ori $19,$19,8112
+
+0x004005f0:       51 00 00 00     ori $19,$19,8112
+0x004005f8:       42 00 00 00     addu $19,$19,$29
+
+0x004005e0:       42 00 00 00     addu $5,$5,$2
+0x004005f8:       42 00 00 00     addu $19,$19,$29
+0x00400600:       34 00 00 00     sw $5,0($19)
+
+
+
+-- With diagram 1:
+kimla207@parlomba4:cde-root$ vliwc -b 24 -d ../lab4/graph2 -v ../lab4/vliw2 tomatv.ss
+The dependency graph is correct!
+graph: {
+        port_sharing: no
+        node: {
+                title: "0x00400608"
+        }
+        node: {
+                title: "0x00400600"
+        }
+        node: {
+                title: "0x004005f8"
+        }
+        node: {
+                title: "0x004005f0"
+        }
+        node: {
+                title: "0x004005e8"
+        }
+        node: {
+                title: "0x004005e0"
+        }
+        node: {
+                title: "0x004005d8"
+        }
+        node: {
+                title: "0x004005d0"
+        }
+        node: {
+                title: "0x004005c8"
+        }
+        node: {
+                title: "0x004005c0"
+        }
+        node: {
+                title: "0x004005b8"
+        }
+        node: {
+                title: "0x004005b0"
+        }
+        node: {
+                title: "0x004005a8"
+        }
+        node: {
+                title: "0x004005a0"
+        }
+        node: {
+                title: "0x00400598"
+        }
+        edge: {
+                sourcename: "0x004005f8"
+                targetname: "0x00400600"
+        }
+        edge: {
+                sourcename: "0x004005f0"
+                targetname: "0x004005f8"
+        }
+        edge: {
+                sourcename: "0x004005e8"
+                targetname: "0x004005f0"
+        }
+        edge: {
+                sourcename: "0x004005e0"
+                targetname: "0x00400600"
+        }
+        edge: {
+                sourcename: "0x004005d8"
+                targetname: "0x004005e0"
+        }
+        edge: {
+                sourcename: "0x004005d0"
+                targetname: "0x004005d8"
+        }
+        edge: {
+                sourcename: "0x004005c0"
+                targetname: "0x004005c8"
+        }
+        edge: {
+                sourcename: "0x004005b8"
+                targetname: "0x004005c0"
+        }
+        edge: {
+                sourcename: "0x004005a8"
+                targetname: "0x004005b0"
+        }
+        edge: {
+                sourcename: "0x004005a0"
+                targetname: "0x004005a8"
+        }
+ALU cost:               2 x 2.000000 = 4.000000
+MUL cost:               1 x 16.000000 = 16.000000
+FPU cost:               1 x 32.000000 = 32.000000
+Bus access cost:        1 x 100.000000 = 100.000000
+Total hardware cost:    152.000000
+Performance:            9 cycles
+Cost-performance ratio: 1368.000000
+The VLIW packing which you propose is correct!
+
+
+-- With diagram 2:
+kimla207@parlomba4:cde-root$ vliwc -b 24 -d ../lab4/graph2 -v ../lab4/vliw2-2 tmcatv.ss
+The dependency graph is correct!
+graph: {
+        port_sharing: no
+        node: {
+                title: "0x00400608"
+        }
+        node: {
+                title: "0x00400600"
+        }
+        node: {
+                title: "0x004005f8"
+        }
+        node: {
+                title: "0x004005f0"
+        }
+        node: {
+                title: "0x004005e8"
+        }
+        node: {
+                title: "0x004005e0"
+        }
+        node: {
+                title: "0x004005d8"
+        }
+        node: {
+                title: "0x004005d0"
+        }
+        node: {
+                title: "0x004005c8"
+        }
+        node: {
+                title: "0x004005c0"
+        }
+        node: {
+                title: "0x004005b8"
+        }
+        node: {
+                title: "0x004005b0"
+        }
+        node: {
+                title: "0x004005a8"
+        }
+        node: {
+                title: "0x004005a0"
+        }
+        node: {
+                title: "0x00400598"
+        }
+        edge: {
+                sourcename: "0x004005f8"
+                targetname: "0x00400600"
+        }
+        edge: {
+                sourcename: "0x004005f0"
+                targetname: "0x004005f8"
+        }
+        edge: {
+                sourcename: "0x004005e8"
+                targetname: "0x004005f0"
+        }
+        edge: {
+                sourcename: "0x004005e0"
+                targetname: "0x00400600"
+        }
+        edge: {
+                sourcename: "0x004005d8"
+                targetname: "0x004005e0"
+        }
+        edge: {
+                sourcename: "0x004005d0"
+                targetname: "0x004005d8"
+        }
+        edge: {
+                sourcename: "0x004005c0"
+                targetname: "0x004005c8"
+        }
+        edge: {
+                sourcename: "0x004005b8"
+                targetname: "0x004005c0"
+        }
+        edge: {
+                sourcename: "0x004005a8"
+                targetname: "0x004005b0"
+        }
+        edge: {
+                sourcename: "0x004005a0"
+                targetname: "0x004005a8"
+        }
+ALU cost:               3 x 2.000000 = 6.000000
+MUL cost:               1 x 16.000000 = 16.000000
+FPU cost:               1 x 32.000000 = 32.000000
+Bus access cost:        1 x 100.000000 = 100.000000
+Total hardware cost:    154.000000
+Performance:            8 cycles
+Cost-performance ratio: 1232.000000
+The VLIW packing which you propose is correct!
+}
+
+
