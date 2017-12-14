@@ -275,7 +275,7 @@ Cost-performance ratio: 1232.000000
 The VLIW packing which you propose is correct!
 }
 
-kimla207@parlomba1:cde-root$ vliwc -b 24 -d ../lab4/graph2 -v ../lab4/vliw2-3 tmcatv.ss 
+kimla207@parlomba4:cde-root$ vliwc -b 24 -d ../lab4/graph2 -v ../lab4/vliw2-3 tomcatv.ss 
 The dependency graph is correct!
 graph: {
 	port_sharing: no
@@ -369,8 +369,8 @@ MUL cost:		1 x 16.000000 = 16.000000
 FPU cost:		1 x 32.000000 = 32.000000
 Bus access cost:	1 x 100.000000 = 100.000000
 Total hardware cost:	156.000000
-Performance:		6 cycles
-Cost-performance ratio:	936.000000
+Performance:		4 cycles
+Cost-performance ratio:	624.000000
 The VLIW packing which you propose is correct!
 }
 
