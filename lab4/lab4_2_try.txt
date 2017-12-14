@@ -275,4 +275,103 @@ Cost-performance ratio: 1232.000000
 The VLIW packing which you propose is correct!
 }
 
+kimla207@parlomba1:cde-root$ vliwc -b 24 -d ../lab4/graph2 -v ../lab4/vliw2-3 tmcatv.ss 
+The dependency graph is correct!
+graph: {
+	port_sharing: no
+	node: {
+		title: "0x00400608"
+	}
+	node: {
+		title: "0x00400600"
+	}
+	node: {
+		title: "0x004005f8"
+	}
+	node: {
+		title: "0x004005f0"
+	}
+	node: {
+		title: "0x004005e8"
+	}
+	node: {
+		title: "0x004005e0"
+	}
+	node: {
+		title: "0x004005d8"
+	}
+	node: {
+		title: "0x004005d0"
+	}
+	node: {
+		title: "0x004005c8"
+	}
+	node: {
+		title: "0x004005c0"
+	}
+	node: {
+		title: "0x004005b8"
+	}
+	node: {
+		title: "0x004005b0"
+	}
+	node: {
+		title: "0x004005a8"
+	}
+	node: {
+		title: "0x004005a0"
+	}
+	node: {
+		title: "0x00400598"
+	}
+	edge: {
+		sourcename: "0x004005f8"
+		targetname: "0x00400600"
+	}
+	edge: {
+		sourcename: "0x004005f0"
+		targetname: "0x004005f8"
+	}
+	edge: {
+		sourcename: "0x004005e8"
+		targetname: "0x004005f0"
+	}
+	edge: {
+		sourcename: "0x004005e0"
+		targetname: "0x00400600"
+	}
+	edge: {
+		sourcename: "0x004005d8"
+		targetname: "0x004005e0"
+	}
+	edge: {
+		sourcename: "0x004005d0"
+		targetname: "0x004005d8"
+	}
+	edge: {
+		sourcename: "0x004005c0"
+		targetname: "0x004005c8"
+	}
+	edge: {
+		sourcename: "0x004005b8"
+		targetname: "0x004005c0"
+	}
+	edge: {
+		sourcename: "0x004005a8"
+		targetname: "0x004005b0"
+	}
+	edge: {
+		sourcename: "0x004005a0"
+		targetname: "0x004005a8"
+	}
+ALU cost:		4 x 2.000000 = 8.000000
+MUL cost:		1 x 16.000000 = 16.000000
+FPU cost:		1 x 32.000000 = 32.000000
+Bus access cost:	1 x 100.000000 = 100.000000
+Total hardware cost:	156.000000
+Performance:		6 cycles
+Cost-performance ratio:	936.000000
+The VLIW packing which you propose is correct!
+}
+
 
